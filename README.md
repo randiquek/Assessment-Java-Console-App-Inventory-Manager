@@ -37,7 +37,7 @@ updatePrice(double price):
 displayProductInfo()
 - Prints a product's productId, productName, quantity, and price
 
-<b>+Product Repository Class+</b>
+<b>+Perishable Product Class+</b>
 
 checkExpiry():
 - Returns based on true or false 
