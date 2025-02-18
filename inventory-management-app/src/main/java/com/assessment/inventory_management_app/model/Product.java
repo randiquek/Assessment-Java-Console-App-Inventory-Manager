@@ -11,8 +11,6 @@ import java.util.List;
 @Entity
 public class Product {
 
-    private InventoryRepository inventoryRepository;
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int productId;
@@ -20,8 +18,10 @@ public class Product {
     private int quantity;
     private double price;
 
-    public Product(int productId, String productName, int quantity, double price) {
-        this.productId = productId;
+    public Product() {
+    }
+
+    public Product(String productName, int quantity, double price) {
         this.productName = productName;
         this.quantity = quantity;
         this.price = price;
@@ -60,26 +60,8 @@ public class Product {
     }
 
     // Methods
-    private void addStock(int quantity) {
-
-    }
-    private void removeStock(int quantity) {
-
-    }
-    private void updatePrice(double price) {
-
-    }
-    public List<Product> displayProductInfo() {
-        return null;
-    }
-
-    @Override
-    public String toString() {
-        return "Product{" +
-                "productId=" + productId +
-                ", productName='" + productName + '\'' +
-                ", quantity=" + quantity +
-                ", price=" + price +
-                '}';
+    public void displayProductInfo() {
+        String productInfo = "Product ID: " + productId + " | Product Name: " + productName + " | Product Quantity: " + quantity + " | Product Price: $" + price;
+        System.out.println(productInfo);
     }
 }
