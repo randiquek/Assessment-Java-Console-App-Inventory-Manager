@@ -1,4 +1,4 @@
-package com.assessment.inventory_managment_app.model;
+package com.assessment.inventory_management_app.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Temporal;

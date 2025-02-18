@@ -1,12 +1,19 @@
-package com.assessment.inventory_managment_app.model;
+package com.assessment.inventory_management_app.model;
 
+import com.assessment.inventory_management_app.data.InventoryRepository;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
+import java.util.List;
 
 @Entity
 public class Product {
 
+    private InventoryRepository inventoryRepository;
+
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int productId;
     private String productName;
@@ -50,6 +57,20 @@ public class Product {
 
     public void setPrice(double price) {
         this.price = price;
+    }
+
+    // Methods
+    private void addStock(int quantity) {
+
+    }
+    private void removeStock(int quantity) {
+
+    }
+    private void updatePrice(double price) {
+
+    }
+    public List<Product> displayProductInfo() {
+        return null;
     }
 
     @Override
