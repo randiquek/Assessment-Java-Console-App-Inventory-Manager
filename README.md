@@ -1,6 +1,6 @@
 # Assessment-Java-Console-App-Inventory-Manager 
 
-<h3>------Psuedocode------</h3>
+<h3>------Pseudocode------</h3>
 
 <b>+Console IO Class+</b>
 
