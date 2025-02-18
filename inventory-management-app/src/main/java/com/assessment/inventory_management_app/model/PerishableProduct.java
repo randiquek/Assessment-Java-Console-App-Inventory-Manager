@@ -12,8 +12,8 @@ public class PerishableProduct extends Product {
     @Temporal(TemporalType.DATE)
     private LocalDate expirationDate;
 
-    public PerishableProduct(int productId, String productName, int quantity, double price, LocalDate expirationDate) {
-        super(productId, productName, quantity, price);
+    public PerishableProduct(String productName, int quantity, double price, LocalDate expirationDate) {
+        super(productName, quantity, price);
         this.expirationDate = expirationDate;
     }
 
@@ -26,9 +26,13 @@ public class PerishableProduct extends Product {
     }
 
     @Override
-    public String toString() {
-        return "PerishableProduct{" +
-                "expirationDate=" + expirationDate +
-                '}';
+    public void displayProductInfo() {
+        String productInfo = "Product ID: " + getProductId() + " | Product Name: " + getProductName() + " | Product Quantity: " + getQuantity() + " | Product Price: $" + getPrice();
+
+        if(expirationDate != null) {
+            productInfo += " | Expiration Date: " + getExpirationDate();
+        }
+
+        System.out.println(productInfo);
     }
 }
