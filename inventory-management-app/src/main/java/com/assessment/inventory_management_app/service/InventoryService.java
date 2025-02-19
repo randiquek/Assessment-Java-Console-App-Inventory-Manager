@@ -140,7 +140,7 @@ public class InventoryService {
             System.out.println("Current Details: ");
             product.get().displayProductInfo();
             System.out.println("-----------------");
-            String quantityEntered = console.getString("Enter New Quantity");
+            String quantityEntered = console.getString("Enter New Quantity (or press Enter to skip)");
                 if (!quantityEntered.trim().isEmpty()) {
                     try {
                         int newQuantity = Integer.parseInt(quantityEntered);
@@ -150,18 +150,39 @@ public class InventoryService {
                     }
                 }
 
-            String priceEntered = console.getString("Enter New Price");
+            String priceEntered = console.getString("Enter New Price (or press Enter to skip)");
                 if (!priceEntered.trim().isEmpty()) {
                     try {
                         double newPrice = Double.parseDouble(priceEntered);
-                        product.get().setQuantity(newPrice);
+                        product.get().setPrice(newPrice);
                     } catch (NumberFormatException e) {
                         //Will skip if enter is pressed
                     }
                 }
+                inventoryRepository.save(product.get());
+                System.out.println("Product updated successfully!");
         }
         else {
-            System.out.println("Item doesn't exist or invalid entry");
+            System.out.println("Product not found or invalid entry");
+        }
+    }
+
+    public void deleteProduct() {
+        int searchedProduct = console.getInteger("Enter a Product ID: ");
+        Optional<Product> product = inventoryRepository.findById(searchedProduct);
+
+        if(product.isPresent()) {
+            String response = console.getString("Are you sure you want to delete this product? (Y/N)");
+                if(response.equalsIgnoreCase("Y")) {
+                    inventoryRepository.deleteById(searchedProduct);
+                    System.out.println("Product deleted successfully!");
+                }
+                else {
+                    System.out.println("Product will not be deleted");
+                }
+        }
+        else {
+            System.out.println("Product not found. Please try again.");
         }
     }
 

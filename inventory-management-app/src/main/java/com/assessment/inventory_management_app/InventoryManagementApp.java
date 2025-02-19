@@ -53,7 +53,8 @@ public class InventoryManagementApp implements CommandLineRunner {
 					inventoryService.updateProduct();
 					break;
 				case DELETE:
-					// deleteProduct()
+					console.printHeader("Delete Product");
+					inventoryService.deleteProduct();
 					break;
 				case EXIT:
 					console.printHeader("Exiting application. Goodbye");
