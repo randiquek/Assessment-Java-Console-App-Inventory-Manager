@@ -2,6 +2,7 @@ package com.assessment.inventory_management_app;
 
 import com.assessment.inventory_management_app.data.InventoryRepository;
 import com.assessment.inventory_management_app.model.Product;
+import com.assessment.inventory_management_app.service.InventoryService;
 import com.assessment.inventory_management_app.ui.ConsoleIO;
 import com.assessment.inventory_management_app.ui.MenuOptions;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,9 @@ public class InventoryManagementApp implements CommandLineRunner {
 
 	@Autowired
 	private InventoryRepository inventoryRepository;
+
+	@Autowired
+	private InventoryService inventoryService;
 
 	private boolean isRunning = false;
 
@@ -33,16 +37,20 @@ public class InventoryManagementApp implements CommandLineRunner {
 			option = console.displayMainMenu();
 			switch (option) {
 				case ADD:
-					// addProduct()
+					console.printHeader("Add Product");
+					inventoryService.addProduct();
 					break;
 				case VIEW_ALL:
-					// displayProduct()
+					console.printHeader("Inventory List");
+					inventoryService.displayAllProducts();
 					break;
 				case SEARCH:
-					// searchProduct()
+					console.printHeader("Search Product");
+					inventoryService.searchProduct();
 					break;
 				case UPDATE:
-					// updateProduct()
+					console.printHeader("Update Product");
+					inventoryService.updateProduct();
 					break;
 				case DELETE:
 					// deleteProduct()

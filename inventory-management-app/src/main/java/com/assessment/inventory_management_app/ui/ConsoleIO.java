@@ -24,7 +24,7 @@ public class ConsoleIO {
         System.out.println("=".repeat(message.length()));
     }
 
-    private String getString(String prompt) {
+    public String getString(String prompt) {
         System.out.println(prompt);
         return console.nextLine();
     }
@@ -40,7 +40,7 @@ public class ConsoleIO {
         return result;
     }
 
-    private int getInteger(String prompt) {
+    public int getInteger(String prompt) {
         String input = null;
         int result = 0;
         boolean isValid = false;
@@ -57,7 +57,7 @@ public class ConsoleIO {
         return result;
     }
 
-    private double getDouble(String prompt) {
+    public double getDouble(String prompt) {
         String input = null;
         double result = 0;
         boolean isValid = false;

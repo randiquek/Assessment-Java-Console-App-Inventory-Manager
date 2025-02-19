@@ -1,12 +1,11 @@
 package com.assessment.inventory_management_app.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Temporal;
-import jakarta.persistence.TemporalType;
+import jakarta.persistence.*;
 
 import java.time.LocalDate;
 
 @Entity
+@DiscriminatorValue("PERISHABLE")
 public class PerishableProduct extends Product {
 
     @Temporal(TemporalType.DATE)
@@ -15,6 +14,10 @@ public class PerishableProduct extends Product {
     public PerishableProduct(String productName, int quantity, double price, LocalDate expirationDate) {
         super(productName, quantity, price);
         this.expirationDate = expirationDate;
+    }
+
+    public PerishableProduct() {
+
     }
 
     public LocalDate getExpirationDate() {
