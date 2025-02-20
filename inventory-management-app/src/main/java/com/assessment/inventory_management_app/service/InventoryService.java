@@ -21,6 +21,7 @@ public class InventoryService {
 
     ConsoleIO console = new ConsoleIO();
 
+    // Individually adds a specified amount to the product quantity
     private void addStock(int productId, int amount) {
         Optional<Product> productNeeded = inventoryRepository.findById(productId);
         if (productNeeded.isPresent() && amount > 0) {
@@ -34,6 +35,8 @@ public class InventoryService {
         }
 
     }
+
+    // Individually removes a specified amount to the product quantity
     private void removeStock(int productId, int amount) {
         Optional<Product> productNeeded = inventoryRepository.findById(productId);
         if(productNeeded.isPresent()) {
@@ -52,6 +55,7 @@ public class InventoryService {
         }
     }
 
+    // Updates product price specifically after finding a product match by ID
     private void updatePrice(int productId, double newPrice) {
         Optional<Product> productNeeded = inventoryRepository.findById(productId);
         if(productNeeded.isPresent()) {
@@ -64,7 +68,7 @@ public class InventoryService {
         }
     }
 
-
+    // Adds a new product by product ID, name, and sets a quantity and price for the product
     public void addProduct() {
 
         int newProductId = console.getInteger("Enter Product ID: ");
@@ -95,7 +99,7 @@ public class InventoryService {
             }
         }
     }
-
+    // Searches a product by ID or name, and uses a boolean to confirm if a product was found
     public void searchProduct() {
         List<Product> products = inventoryRepository.findAll();
 
@@ -131,15 +135,18 @@ public class InventoryService {
         }
     }
 
+    // Updates a current product by searching for the product ID
     public void updateProduct() {
 
         int searchedProduct = console.getInteger("Enter a Product ID: ");
         Optional<Product> product = inventoryRepository.findById(searchedProduct);
 
+        // First displays the product info if found
         if(product.isPresent()) {
             System.out.println("Current Details: ");
             product.get().displayProductInfo();
             System.out.println("-----------------");
+            // Once found, a new product quantity can be set/changed
             String quantityEntered = console.getString("Enter New Quantity (or press Enter to skip)");
                 if (!quantityEntered.trim().isEmpty()) {
                     try {
@@ -149,7 +156,7 @@ public class InventoryService {
                         //Will skip if enter is pressed
                     }
                 }
-
+            // A new price can also be changed/set
             String priceEntered = console.getString("Enter New Price (or press Enter to skip)");
                 if (!priceEntered.trim().isEmpty()) {
                     try {
@@ -167,10 +174,12 @@ public class InventoryService {
         }
     }
 
+    // Allows for product deletion by searching for product ID
     public void deleteProduct() {
         int searchedProduct = console.getInteger("Enter a Product ID: ");
         Optional<Product> product = inventoryRepository.findById(searchedProduct);
 
+        // Confirms if the specified product should be deleted or not
         if(product.isPresent()) {
             String response = console.getString("Are you sure you want to delete this product? (Y/N)");
                 if(response.equalsIgnoreCase("Y")) {
